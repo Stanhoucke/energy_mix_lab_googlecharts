@@ -1,9 +1,15 @@
 <template lang="html">
-  <div>
+  <div v-if="energieslist">
+      <h3>Data from: {{from}} to: {{to}}</h3>
       <GChart
         type="ColumnChart"
-        :data="generationMix"
-        :options="chartOptions"/>
+        :data="chartData"
+        :options="{
+        chart: {
+          title: 'Energy Generation Mix',
+          subtitle: `Showing data from: ${from} to: ${to}`
+        }
+      }"/>
   </div>
 
 </template>
@@ -15,15 +21,9 @@ export default {
     name: 'generation-mix',
     data(){
         return {
-            generationMix: [],
+            generationMix: []
 
-        chartOptions: {
-        chart: {
-          title: "Energy Generation Mix",
-          subtitle: "Showing data from: ___ to: ___"
-        }
-      }
-           
+        
 
             // generationMix: [
             //   ["Fuel", "Percentage"],
@@ -36,7 +36,7 @@ export default {
 
         }
     },
-    props: ['energieslist'],
+    props: ['energieslist', 'from', 'to'],
     computed: {
         chartData: function() {
             const googleData = [];
@@ -48,10 +48,10 @@ export default {
             const energyData = this.energieslist.map((energy) => {
                     // console.log(Object.values(energy));
                 let energyArray = Object.values(energy);
-                this.generationMix.push(energyArray);
+                googleData.push(energyArray);
             } )
-            this.generationMix.unshift(titles);
-            // return googleData;
+            googleData.unshift(titles);
+            return googleData;
         }
     },
     methods: {

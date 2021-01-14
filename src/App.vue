@@ -1,19 +1,18 @@
 <template lang="html">
-  <div>
+  <div v-if="energies">
     <h1>Our Cool Energy Mix Tracker</h1>
-    <generation-mix :energieslist="energies.generationmix"></generation-mix>
+    <generation-mix :energieslist="energies.generationmix" :from="energies.from" :to="energies.to"></generation-mix>
   </div>
 </template>
 
 <script>
-// import GenerationMix from './components/GenerationMix.vue'
 import GenerationMixer from './components/GenerationMixer.vue'
 
 export default {
   name: 'app',
   data(){
     return {
-      energies: {}
+      energies: null
     }
   },
   components: {
