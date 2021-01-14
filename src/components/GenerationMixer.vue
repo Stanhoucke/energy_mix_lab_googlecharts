@@ -10,6 +10,27 @@
           subtitle: `Showing data from: ${from} to: ${to}`
         }
       }"/>
+
+      <GChart
+        type="PieChart"
+        :data="chartData"
+        :options="{
+        chart: {
+          title: 'Energy Generation Mix',
+          subtitle: `Showing data from: ${from} to: ${to}`
+        }
+      }"/>
+
+      <GChart
+        type="BarChart"
+        :data="chartData"
+        :options="{
+        chart: {
+          title: 'Energy Generation Mix',
+          subtitle: `Showing data from: ${from} to: ${to}`
+        }
+      }"/>
+
   </div>
 
 </template>
@@ -24,7 +45,7 @@ export default {
             generationMix: []
 
         
-
+            
             // generationMix: [
             //   ["Fuel", "Percentage"],
             // ["object.fuelValue", object.percValue]
